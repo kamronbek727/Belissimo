@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellissimo - Tizimga kirish</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Central Styling -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="login-page">
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo2.png" alt="Bellissimo Logo" class="logo-img">
+                            </a>
+
+            <nav class="desktop-nav">
+                <a href="index.html" class="nav-link">Asosiy</a>
+                <a href="orders.html" class="nav-link">Buyurtmalar</a>
+                <a href="favorites.html" class="nav-link">Sevimlilar</a>
+            </nav>
+
+            <div class="header-actions">
+
+                <a href="profile.html" class="action-btn" title="Profil">
+                    <img src="images/avatar.svg" alt="Profil" style="width: 22px; height: 22px; border-radius: 50%;">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="login-wrapper">
+            <div class="login-card">
+                <img src="images/logo2.png" alt="Bellissimo Logo" class="login-logo">
+                <h2 class="login-title">Hush kelibsiz!</h2>
+                <p class="login-subtitle">Bellissimo hisobingizga kiring</p>
+                
+                <form id="login-form">
+                    <!-- Step 1: Phone Number -->
+                    <div id="login-step-phone">
+                        <div class="form-group">
+                            <label class="form-label" for="login-username">Telefon raqam</label>
+                            <input type="tel" id="login-username" class="form-input" placeholder="+998 90 123 45 67" required>
+                        </div>
+                        <button type="button" id="btn-next-step" class="btn-login">Kirish</button>
+                    </div>
+
+                    <!-- Step 2: Name (Hidden initially) -->
+                    <div id="login-step-name" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label" for="login-name">Ismingiz</label>
+                            <input type="text" id="login-name" class="form-input" placeholder="Ismingizni kiriting" required>
+                        </div>
+                        <button type="submit" class="btn-login">Tizimga kirish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo2.png" alt="Bellissimo Logo" class="logo-img" style="height: 28px; width: auto; object-fit: contain;">
+                <span class="logo-text" style="font-size: 20px;">Bellissimo</span>
+            </a>
+            <p class="footer-copyright">© 2026 Bellissimo. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-nav-container">
+            <a href="index.html" class="mobile-nav-item">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                </svg>
+                <span>Asosiy</span>
+            </a>
+            <a href="orders.html" class="mobile-nav-item">
+                <img src="images/korzinka.svg" alt="Buyurtmalar" style="width: 22px; height: 22px; object-fit: contain;">
+                <span>Buyurtmalar</span>
+            </a>
+            <a href="favorites.html" class="mobile-nav-item">
+                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span>Sevimlilar</span>
+            </a>
+            <a href="profile.html" class="mobile-nav-item">
+                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Profil</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+</html>

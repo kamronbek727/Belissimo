@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Burger - Bellissimo</title>
+    <meta name="description" content="Mol go'shti kotleti, cheddar pishlog'i, tomat, marul va maxsus sous bilan tayyorlangan Classic Burger. Bellissimo'da buyurtma bering.">
+    <link rel="icon" type="image/x-icon" href="images/logo2.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==========================================================================
+         DESKTOP HEADER (Visible on Desktop/Tablet, hidden on Mobile)
+         ========================================================================== -->
+    <header class="desktop-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo2.png" alt="Bellissimo Logo" class="logo-img">
+                            </a>
+
+            <nav class="desktop-nav">
+                <a href="index.html" class="nav-link">Asosiy</a>
+                <a href="orders.html" class="nav-link">Buyurtmalar</a>
+                <a href="favorites.html" class="nav-link">Sevimlilar</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="header-search">
+                    <svg class="header-search-icon" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Nima buyurtma qilmoq?">
+                </div>
+
+                <button class="location-selector" title="Yetkazib berish manzili">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg" style="color: var(--pink-accent);">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                    </svg>
+                    <span>Navoiy shahri, Navoiy</span>
+                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="0.8em" width="0.8em" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+
+                <button class="action-btn" title="Bildirishnomalar">
+                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="badge">1</span>
+                </button>
+
+
+                <a href="profile.html" class="action-btn" title="Profil">
+                    <img src="images/avatar.svg" alt="Profil" style="width: 22px; height: 22px; border-radius: 50%;">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         PRODUCT DETAIL SECTION
+         ========================================================================== -->
+    <main class="container">
+        <!-- Desktop Back Bar (Hidden on Mobile) -->
+        <div class="detail-back-bar">
+            <a href="index.html" class="back-link">
+                <svg stroke="currentColor" fill="none" stroke-width="2.5" viewBox="0 0 24 24" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Orqaga, Asosiy sahifaga</span>
+            </a>
+        </div>
+
+        <section class="detail-page-wrapper" data-base-price="45000">
+            <div class="detail-layout">
+                
+                <!-- Left Column: Visual Gallery Card -->
+                <div class="detail-gallery-card">
+                    <div class="gallery-top-actions">
+                        <!-- Back Button (Mobile layout) -->
+                        <a href="index.html" class="gallery-circle-btn flex-center" title="Orqaga">
+                            <svg stroke="currentColor" fill="none" stroke-width="2.5" viewBox="0 0 24 24" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                        </a>
+                        
+                        <div class="flex-center" style="gap: 12px;">
+                            <!-- Favorite Button -->
+                            <button class="gallery-circle-btn detail-fav-btn flex-center" data-product-id="classic-burger" title="Saralanganlarga qo'shish">
+                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </button>
+                            
+                            <!-- Share Button -->
+                            <button class="gallery-circle-btn flex-center" title="Ulashish" onclick="navigator.clipboard.writeText(window.location.href).then(()=>showToast('Havola nusxalandi! 🔗')).catch(()=>showToast('Nusxalab bo\'lmadi'))">
+                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gallery-image-container">
+                        <img src="images/burger.png" alt="Classic Burger" class="detail-main-img">
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Interactive details -->
+                <div class="detail-info-card">
+                    <div class="detail-header">
+                        <h2 class="detail-title">Classic Burger</h2>
+                        <div class="detail-ratings-row">
+                            <div class="detail-rating">
+                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                                </svg>
+                                <span>4.6 <span class="detail-rating-count">(91)</span></span>
+                            </div>
+                            <span class="detail-category-badge">Fastfood</span>
+                        </div>
+                    </div>
+
+                    <p class="detail-description">
+                        Mol go'shti kotleti, cheddar pishlog'i, tomat, marul va maxsus sous.
+                    </p>
+
+                    <!-- No Size Selector (O'lcham) for Burger, matching mobile UI reference -->
+
+                    <!-- Extras (Qo'shimchalar) -->
+                    <div class="selector-section">
+                        <h4 class="selector-title">Qo'shimchalar</h4>
+                        <div class="extras-list">
+                            <div class="extra-item" data-price="5000">
+                                <div class="extra-info">
+                                    <span class="extra-name">Kartoshka fri</span>
+                                    <span class="extra-price">+ 5 000 so'm</span>
+                                </div>
+                                <button class="extra-checkbox flex-center">
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="extra-item" data-price="10000">
+                                <div class="extra-info">
+                                    <span class="extra-name">Coca Cola 0.5l</span>
+                                    <span class="extra-price">+ 10 000 so'm</span>
+                                </div>
+                                <button class="extra-checkbox flex-center">
+                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Purchase Actions Column -->
+                    <div class="detail-purchase-bar">
+                        <div class="detail-total-col">
+                            <span class="detail-total-label">Jami narx</span>
+                            <span class="detail-total-price">45 000 so'm</span>
+                        </div>
+                        <div class="detail-actions-col">
+                            <div class="quantity-selector">
+                                <button class="qty-btn qty-decrease">-</button>
+                                <span class="qty-number">1</span>
+                                <button class="qty-btn qty-increase">+</button>
+                            </div>
+                            <button class="btn-add-to-cart">
+                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                                <span>Savatchaga qo'shish</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+         MINIMAL FOOTER
+         ========================================================================== -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo2.png" alt="Bellissimo Logo" class="logo-img" style="height: 28px; width: auto; object-fit: contain;">
+                <span class="logo-text" style="font-size: 20px;">Bellissimo</span>
+            </a>
+            
+            <p class="footer-copyright">© 2026 Bellissimo. Barcha huquqlar himoyalangan.</p>
+            
+            <div class="social-links">
+                <a href="https://t.me/Belissimo_Navoiy" target="_blank" rel="noopener noreferrer" class="social-icon flex-center" title="Telegram">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"></path>
+                    </svg>
+                </a>
+                <a href="https://instagram.com/bellissimo.navoiy" target="_blank" rel="noopener noreferrer" class="social-icon flex-center" title="Instagram">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.1em" width="1.1em" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shared Javascript file -->
+    <script src="script.js"></script>
+</body>
+</html>
