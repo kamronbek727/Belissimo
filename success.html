@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bellissimo - Buyurtmalar</title>
+    <title>Bellissimo - Buyurtma qabul qilindi!</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,19 +11,19 @@
     <!-- Central Styling -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body id="orders-page">
+<body id="success-page">
 
     <!-- Header Section -->
     <header class="header">
         <div class="container header-container">
             <a href="index.html" class="logo-link">
                 <img src="images/logo2.png" alt="Bellissimo Logo" class="logo-img">
-                            </a>
+            </a>
 
             <nav class="desktop-nav">
                 <a href="index.html" class="nav-link">Asosiy</a>
                 <a href="cart.html" class="nav-link">Savatcha <span class="cart-badge nav-cart-badge">0</span></a>
-                <a href="orders.html" class="nav-link active">Buyurtmalar</a>
+                <a href="orders.html" class="nav-link">Buyurtmalar</a>
                 <a href="favorites.html" class="nav-link">Sevimlilar</a>
             </nav>
 
@@ -58,17 +58,51 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container" style="min-height: 70vh;">
-        <h2 class="cart-title" style="margin-top: 30px;">Buyurtmalaringiz</h2>
-        
-        <div id="orders-list" class="orders-list">
-            <!-- Rendered via JS -->
+    <main class="container flex-center" style="min-height: 70vh; padding: 40px 20px; flex-direction: column; text-align: center; justify-content: center;">
+        <div style="background-color: rgba(46, 204, 113, 0.1); color: #2ecc71; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 8px 20px rgba(46, 204, 113, 0.15);">
+            <svg stroke="currentColor" fill="none" stroke-width="3" viewBox="0 0 24 24" height="40px" width="40px" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
         </div>
 
+        <h2 style="font-size: 28px; font-weight: 800; color: var(--dark-purple); margin: 0 0 12px 0;">Buyurtmangiz qabul qilindi! 🎉</h2>
+        <p style="font-size: 16px; color: var(--text-muted); margin: 0 0 30px 0; max-width: 400px; font-weight: 500;">
+            Kuryerimiz tez orada siz bilan bog'lanadi va mazali taomlaringizni yetkazib beradi!
+        </p>
 
+        <!-- Order Information Card -->
+        <div style="background-color: #fff; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); padding: 24px 30px; width: 100%; max-width: 400px; text-align: left; margin-bottom: 40px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px;">
+                <span style="color: var(--text-muted); font-weight: 500;">Buyurtma raqami:</span>
+                <span id="success-order-id" style="font-weight: 800; color: var(--dark-purple);">#BL000000</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px;">
+                <span style="color: var(--text-muted); font-weight: 500;">Sana:</span>
+                <span id="success-order-date" style="font-weight: 700; color: var(--dark-purple);">--.--.----</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 15px;">
+                <span style="color: var(--text-muted); font-weight: 500;">To'lov usuli:</span>
+                <span id="success-order-payment" style="font-weight: 700; color: var(--dark-purple);">--</span>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 400px;">
+            <a href="orders.html" class="btn-checkout" style="text-align: center; text-decoration: none; margin: 0; width: 100%;">Buyurtmani kuzatish</a>
+            <a href="index.html" class="btn-secondary flex-center" style="background-color: var(--bg-gray); color: var(--dark-purple); font-weight: 700; padding: 14px; border-radius: 30px; border: 1px solid var(--border-color); text-decoration: none; width: 100%; cursor: pointer;">Asosiy sahifaga qaytish</a>
+        </div>
     </main>
 
-
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo2.png" alt="Bellissimo Logo" class="logo-img" style="height: 28px; width: auto; object-fit: contain;">
+                <span class="logo-text" style="font-size: 20px;">Bellissimo</span>
+            </a>
+            <p class="footer-copyright">© 2026 Bellissimo. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
 
     <!-- Mobile Navigation -->
     <nav class="mobile-bottom-nav">
@@ -86,7 +120,7 @@
                 </div>
                 <span>Savatcha</span>
             </a>
-            <a href="orders.html" class="mobile-nav-item active">
+            <a href="orders.html" class="mobile-nav-item">
                 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path>
                     <rect x="9" y="3" width="6" height="4" rx="2" ry="2"></rect>
@@ -108,5 +142,18 @@
 
     <!-- JS -->
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Read success order info from localStorage
+            const latestOrder = JSON.parse(localStorage.getItem('bellissimo_latest_order'));
+            if (latestOrder) {
+                document.getElementById('success-order-id').innerText = latestOrder.id;
+                document.getElementById('success-order-date').innerText = latestOrder.date;
+                
+                const paymentLabel = latestOrder.paymentMethod === 'card' ? 'Karta orqali' : 'Naqd pul';
+                document.getElementById('success-order-payment').innerText = paymentLabel;
+            }
+        });
+    </script>
 </body>
 </html>

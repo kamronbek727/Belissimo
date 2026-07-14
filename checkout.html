@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellissimo - Buyurtmani rasmiylashtirish</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Central Styling -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Environment Config -->
+    <script src="config.js"></script>
+    <style>
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .checkout-form-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .checkout-summary-panel {
+            background-color: #fff;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-soft);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        .delivery-switch-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .delivery-switch-btn.active {
+            background-color: #fff;
+            color: var(--dark-purple);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .address-card {
+            padding: 16px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background-color: #fff;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .address-card.active {
+            border-color: var(--pink-accent);
+            background-color: rgba(209, 26, 91, 0.02);
+        }
+        .payment-card {
+            padding: 16px 20px;
+            border-radius: 16px;
+            border: 2px solid var(--border-color);
+            background-color: #fff;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+        .payment-card.active {
+            border-color: var(--pink-accent) !important;
+            background-color: rgba(209, 26, 91, 0.02) !important;
+        }
+        .checkout-summary-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .checkout-summary-item:last-child {
+            border-bottom: none;
+        }
+        .checkout-summary-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: var(--border-radius-sm);
+            background-color: var(--bg-gray);
+        }
+        .error-msg {
+            color: var(--pink-accent);
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 4px;
+            display: none;
+        }
+        @media (max-width: 992px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .checkout-summary-panel {
+                position: static;
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body id="checkout-page">
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo2.png" alt="Bellissimo Logo" class="logo-img">
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="index.html" class="nav-link">Asosiy</a>
+                <a href="cart.html" class="nav-link">Savatcha <span class="cart-badge nav-cart-badge">0</span></a>
+                <a href="orders.html" class="nav-link">Buyurtmalar</a>
+                <a href="favorites.html" class="nav-link">Sevimlilar</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="location-selector" title="Yetkazib berish manzili">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1.2em" width="1.2em" xmlns="http://www.w3.org/2000/svg" style="color: var(--pink-accent);">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                    </svg>
+                    <span>Navoiy shahri, Navoiy</span>
+                </button>
+
+                <!-- Shown when logged in -->
+                <div id="desktop-auth-actions" style="display: none; align-items: center; gap: 8px;">
+                    <button class="action-btn" title="Bildirishnomalar">
+                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                        <span class="badge">1</span>
+                    </button>
+                    <a href="profile.html" class="action-btn" title="Profil">
+                        <img src="images/avatar.svg" alt="Profil" style="width: 22px; height: 22px; border-radius: 50%;">
+                    </a>
+                </div>
+                <!-- Shown when NOT logged in -->
+                <a href="login.html" id="desktop-login-btn" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 30px; font-size: 14px; font-weight: 700; text-decoration: none; background: var(--pink-gradient); color: #fff; box-shadow: 0 4px 15px rgba(209,26,91,0.25);">
+                    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                    Kirish
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container" style="min-height: 70vh; padding-top: 30px; padding-bottom: 50px;">
+        <h2 class="cart-title" style="margin-top: 0; margin-bottom: 20px;">Buyurtmani rasmiylashtirish</h2>
+
+        <div class="checkout-layout">
+            <!-- Left Column: Checkout Config Form -->
+            <div class="checkout-form-panel">
+                <!-- Delivery Method Switch -->
+                <div class="delivery-switch-container" style="background-color: var(--bg-gray); padding: 6px; border-radius: 30px; display: inline-flex; width: 100%; max-width: 400px; border: 1px solid var(--border-color);">
+                    <button type="button" id="delivery-method-delivery" class="delivery-switch-btn active" style="flex: 1; padding: 12px 20px; border-radius: 24px; font-size: 15px; font-weight: 700; transition: var(--transition-smooth);">Yetkazib berish</button>
+                    <button type="button" id="delivery-method-pickup" class="delivery-switch-btn" style="flex: 1; padding: 12px 20px; border-radius: 24px; font-size: 15px; font-weight: 700; transition: var(--transition-smooth);">Olib ketish</button>
+                </div>
+
+                <!-- Customer Information Section -->
+                <!-- Logged-in Customer View -->
+                <div id="customer-info-logged-in" class="checkout-card" style="display: none; padding: 24px; background: #fff; border-radius: var(--border-radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft);">
+                    <h4 style="font-size: 16px; font-weight: 800; color: var(--dark-purple); margin-bottom: 12px;">Mijoz ma'lumotlari</h4>
+                    <div style="font-size: 16px; font-weight: 700; color: var(--dark-purple);" id="checkout-customer-name"></div>
+                    <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;" id="checkout-customer-phone"></div>
+                </div>
+
+                <!-- Guest Customer View -->
+                <div id="customer-info-guest" class="checkout-card" style="display: none; padding: 24px; background: #fff; border-radius: var(--border-radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft);">
+                    <h4 style="font-size: 16px; font-weight: 800; color: var(--dark-purple); margin-bottom: 16px;">Mijoz ma'lumotlari</h4>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label style="font-size: 14px; font-weight: 600; color: var(--dark-purple); display: block; margin-bottom: 6px;">Ism</label>
+                        <input type="text" id="guest-name" class="form-input" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; font-size: 15px;" placeholder="Ismingizni kiriting">
+                        <div class="error-msg" id="guest-name-error">Ismingizni kiriting</div>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 14px; font-weight: 600; color: var(--dark-purple); display: block; margin-bottom: 6px;">Telefon raqami</label>
+                        <input type="text" id="guest-phone" class="form-input" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; font-size: 15px;" placeholder="+998 XX XXX XX XX">
+                        <div class="error-msg" id="guest-phone-error">Telefon raqamini to'g'ri kiriting</div>
+                    </div>
+                </div>
+
+                <!-- Yetkazib berish (Delivery Address Map) Section -->
+                <div id="checkout-delivery-section" class="checkout-card" style="padding: 24px; background: #fff; border-radius: var(--border-radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft);">
+                    <h4 style="font-size: 16px; font-weight: 800; color: var(--dark-purple); margin-bottom: 16px;">Yetkazib berish manzili</h4>
+                    
+                    <!-- Search Control & Locate User -->
+                    <div class="map-search-row">
+                        <div class="map-search-input-wrapper">
+                            <svg stroke="currentColor" fill="none" stroke-width="2.5" viewBox="0 0 24 24" height="18px" width="18px" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" id="map-search-input" class="map-search-input" placeholder="Manzilni qidiring...">
+                        </div>
+                        <button type="button" id="btn-locate-user" class="btn-locate-user" title="Turgan joyimni aniqlash">
+                            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="22px" width="22px" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Yandex Map responsive container -->
+                    <div class="checkout-map-wrapper">
+                        <div id="checkout-map" class="checkout-map-container"></div>
+                    </div>
+
+                    <!-- Selected Address display box -->
+                    <div class="selected-address-box">
+                        <div style="font-size: 11px; font-weight: 700; color: var(--pink-accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Tanlangan manzil</div>
+                        <div id="selected-address-text" style="font-size: 15px; font-weight: 600; color: var(--dark-purple); line-height: 1.4;">Xaritadan tanlanmagan</div>
+                    </div>
+
+
+
+                    <!-- Confirm address button -->
+                    <button type="button" id="btn-confirm-address" class="btn-confirm-address" disabled>Manzilni tasdiqlash</button>
+                </div>
+
+                <!-- Olib ketish (Pickup Section) -->
+                <div id="checkout-pickup-section" class="checkout-card" style="display: none; padding: 24px; background: #fff; border-radius: var(--border-radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft);">
+                    <h4 style="font-size: 16px; font-weight: 800; color: var(--dark-purple); margin-bottom: 16px;">Olib ketish joyi</h4>
+                    <div style="background-color: var(--bg-gray); padding: 18px 20px; border-radius: 16px; border: 1px solid var(--border-color); display: flex; align-items: flex-start; gap: 14px;">
+                        <div style="background-color: rgba(209, 26, 91, 0.1); color: var(--pink-accent); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="22px" width="22px" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; color: var(--dark-purple);">Bellissimo Navoiy filiali</div>
+                            <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px; line-height: 1.4;">Navoiy shahri, Navoiy ko'chasi, 32-uy (Markaziy universal do'koni yonida)</div>
+                            <div style="font-size: 12px; color: var(--text-muted); font-style: italic; margin-top: 8px;">Buyurtmangiz tayyor bo'lganda filialdan olib ketishingiz mumkin.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Method Section -->
+                <div class="checkout-card" style="padding: 24px; background: #fff; border-radius: var(--border-radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-soft);">
+                    <h4 style="font-size: 16px; font-weight: 800; color: var(--dark-purple); margin-bottom: 16px;">To'lov usuli</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <button type="button" id="payment-method-cash" class="payment-card active">
+                            <div style="font-size: 15px; font-weight: 700; color: var(--dark-purple);">Naqd pul</div>
+                            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Kuryerga yoki filialda to'lash</div>
+                        </button>
+                        <button type="button" id="payment-method-card" class="payment-card">
+                            <div style="font-size: 15px; font-weight: 700; color: var(--dark-purple);">Karta orqali</div>
+                            <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Saytda onlayn karta orqali to'lash</div>
+                        </button>
+                    </div>
+
+                    <!-- Online Card Payment Card Entry Panel -->
+                    <div id="online-payment-panel" style="display: none; border-top: 1px solid var(--border-color); margin-top: 20px; padding-top: 20px;">
+                        <h5 style="font-size: 14px; font-weight: 700; color: var(--dark-purple); margin-bottom: 12px;">Onlayn to'lov (karta ma'lumotlari)</h5>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label style="font-size: 13px; font-weight: 600; color: var(--dark-purple); display: block; margin-bottom: 4px;">Karta raqami</label>
+                            <input type="text" id="card-number" class="form-input" style="width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px;" placeholder="8600 **** **** ****" maxlength="19">
+                            <div class="error-msg" id="card-number-error">Karta raqamini to'g'ri kiriting</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div class="form-group">
+                                <label style="font-size: 13px; font-weight: 600; color: var(--dark-purple); display: block; margin-bottom: 4px;">Muddati</label>
+                                <input type="text" id="card-expiry" class="form-input" style="width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px;" placeholder="OO/YY" maxlength="5">
+                                <div class="error-msg" id="card-expiry-error">Amal qilish muddati xato</div>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-size: 13px; font-weight: 600; color: var(--dark-purple); display: block; margin-bottom: 4px;">CVV/CVC</label>
+                                <input type="password" id="card-cvv" class="form-input" style="width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px;" placeholder="***" maxlength="3">
+                                <div class="error-msg" id="card-cvv-error">CVV xato</div>
+                            </div>
+                        </div>
+                        <div style="background-color: #f8f9fc; border: 1px solid var(--border-color); border-radius: 12px; padding: 12px 14px; margin-top: 14px; display: flex; align-items: center; gap: 10px;">
+                            <svg stroke="#2ecc71" fill="none" stroke-width="2.5" viewBox="0 0 24 24" height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <span style="font-size: 12px; color: var(--text-muted); font-weight: 500; line-height: 1.3;">Xavfsiz ulanish. Karta ma'lumotlari saqlanmaydi va to'lov shifrlangan holda amalga oshiriladi.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Sticky Order Summary -->
+            <div class="checkout-summary-panel">
+                <h3 class="summary-title">Buyurtmangiz</h3>
+                <div id="checkout-summary-items-list" style="margin-bottom: 20px; max-height: 250px; overflow-y: auto; padding-right: 4px;">
+                    <!-- Dynamically populated -->
+                </div>
+                <div class="summary-row">
+                    <span>Mahsulotlar:</span>
+                    <span id="checkout-subtotal">0 so'm</span>
+                </div>
+                <div class="summary-row">
+                    <span>Yetkazib berish:</span>
+                    <span id="checkout-delivery">0 so'm</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Jami:</span>
+                    <span id="checkout-total">0 so'm</span>
+                </div>
+                <button type="button" id="btn-confirm-order" class="btn-checkout" style="font-family: 'Outfit', sans-serif;">Buyurtmani tasdiqlash</button>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo2.png" alt="Bellissimo Logo" class="logo-img" style="height: 28px; width: auto; object-fit: contain;">
+                <span class="logo-text" style="font-size: 20px;">Bellissimo</span>
+            </a>
+            <p class="footer-copyright">© 2026 Bellissimo. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-nav-container">
+            <a href="index.html" class="mobile-nav-item">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+                </svg>
+                <span>Asosiy</span>
+            </a>
+            <a href="cart.html" class="mobile-nav-item">
+                <div class="mobile-cart-icon-wrapper">
+                    <img src="images/korzinka.svg" alt="Savatcha" style="width: 22px; height: 22px; object-fit: contain;">
+                    <span class="cart-badge badge">0</span>
+                </div>
+                <span>Savatcha</span>
+            </a>
+            <a href="orders.html" class="mobile-nav-item">
+                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path>
+                    <rect x="9" y="3" width="6" height="4" rx="2" ry="2"></rect>
+                    <path d="M9 14h6"></path>
+                    <path d="M9 18h6"></path>
+                    <path d="M9 10h6"></path>
+                </svg>
+                <span>Buyurtmalar</span>
+            </a>
+            <a href="profile.html" class="mobile-nav-item">
+                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Profil</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+</html>
